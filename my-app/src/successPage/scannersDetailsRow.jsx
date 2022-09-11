@@ -34,6 +34,10 @@ const ScannerDetailsRow = ({
         variant="contained"
         type="submit"
         fullWidth
+        style={{
+          color: "white",
+          backgroundColor: ScannerStatus === "true" ? "grey" : "black",
+        }}
         disabled={ScannerStatus === "true" ? true : false}
       >
         Connect

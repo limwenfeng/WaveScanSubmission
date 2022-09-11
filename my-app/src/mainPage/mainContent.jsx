@@ -1,11 +1,9 @@
 import React, { useState, useReducer } from "react";
-import { Paper, Button } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Paper, Button, CircularProgress, Typography } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { purple, grey, black, green, red } from "@mui/material/colors";
+import { red } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { CircularProgress } from "@mui/material";
 import DropDownSelect from "../components/dropDownSelect";
 import FormTextField from "../components/formTextField";
 import { submitForm } from "../service/httpFunction";
@@ -18,7 +16,7 @@ const theme = createTheme({
   },
 });
 
-const MainContainer = styled(Paper)((props) => ({
+const MainContainer = styled(Paper)(() => ({
   width: "80%",
   maxWidth: "500px",
   alignSelf: "center",

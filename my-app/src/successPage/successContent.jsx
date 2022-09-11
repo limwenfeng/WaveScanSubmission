@@ -1,12 +1,9 @@
-import React, { useState } from "react";
-import { Paper, Typography } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Paper, Typography, CircularProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ScannerDetailsRow from "./scannersDetailsRow";
-import { useEffect } from "react";
 import { getScanners } from "../service/httpFunction";
-import { CircularProgress } from "@mui/material";
-
-const MainContainer = styled(Paper)((props) => ({
+const MainContainer = styled(Paper)(() => ({
   width: "auto",
   maxWidth: "auto",
   alignSelf: "center",
@@ -17,18 +14,16 @@ export default function SuccessContent({ isSuccess = true }) {
   const [noOfScanners, setNoOfScanners] = useState(0);
   const [loading, setLoading] = useState(true);
   const [scannerData, setScannerData] = useState([]);
-  const [noScanner, setNoScanner] = useState(false);
+  const [noScanner, setNoScanner] = useState();
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       const response = await getScanners();
-      // slot ranking data in
-      console.log(response.data);
       if (response.status === 200) {
-        console.log("Populate table");
         setScannerData(response.data);
         setNoOfScanners(response.data.length);
+        setNoScanner(false);
         if (response.data.length === 0) {
           setNoScanner(true);
         }
@@ -102,11 +97,27 @@ export default function SuccessContent({ isSuccess = true }) {
                   Status
                 </Typography>
               </div>
+              <div
+                style={{
+                  height: "1px",
+                  width: "100%",
+                  color: "black",
+                  backgroundColor: "black",
+                }}
+              ></div>
               {noScanner && (
                 <Typography variant="h7" component="div">
                   No Scanner data found.
                 </Typography>
               )}
+              <div
+                style={{
+                  height: "1px",
+                  width: "100%",
+                  color: "black",
+                  backgroundColor: "black",
+                }}
+              ></div>
               {scannerData.map((data, index) => {
                 return (
                   <div key={index}>
@@ -116,6 +127,7 @@ export default function SuccessContent({ isSuccess = true }) {
                       ScannerSpeed={data.scannerSpeed}
                       ScannerStatus={data.isAvailable}
                     />
+                    {/* divider */}
                     <div
                       style={{
                         height: "1px",
