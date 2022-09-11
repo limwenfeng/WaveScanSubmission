@@ -92,7 +92,7 @@ export default function MainContent() {
         <MainContainer elevation={3}>
           {redirecting ? (
             <>
-              <CircularProgress />
+              <CircularProgress style={{ color: "black", margin: "10px" }} />
               <Typography variant="h7" align="center" component="div">
                 Redirecting to success page...
               </Typography>

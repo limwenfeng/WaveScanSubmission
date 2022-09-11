@@ -55,7 +55,7 @@ export default function SuccessContent({ isSuccess = true }) {
       <MainContainer elevation={3}>
         {loading === true ? (
           <>
-            <CircularProgress />
+            <CircularProgress style={{ color: "black", margin: "10px" }} />
             <Typography variant="h6" component="div">
               Fetching data
             </Typography>
